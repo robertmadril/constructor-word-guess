@@ -5,7 +5,6 @@ var Word = function(word){
     this.letters = [];
 
     this.getLetters = function() {
-        console.log("Getting letters");
         for(i=0; i<this.word.length; i++) {
             var newLetter = new Letter(this.word[i]);
             this.letters.push(newLetter);
@@ -13,7 +12,6 @@ var Word = function(word){
     }
 
     this.returnString = function() {
-        console.log("returning string");
         var stringArray = [];
         for (i=0; i<this.letters.length; i++) {
            stringArray.push(this.letters[i].checkLetter());
@@ -23,7 +21,6 @@ var Word = function(word){
     }
 
     this.checkAllLetters = function(char) {
-        console.log("checking all letters")
         var lowerChar = char.toLowerCase();
         for (i=0; i<this.letters.length; i++) {
             this.letters[i].updateBoolean(lowerChar);

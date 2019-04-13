@@ -5,10 +5,12 @@ var wordsToGuess = ["Impala", "Toad", "Elk", "Ant", "Rhino", "Python", "Goat", "
 
 var numGuesses = 6;
 var isComplete = false;
+var inWord = false;
 
 function startGame() {
     console.log("Guess the programming language with an animal in their logo.");
     numGuesses = 6;
+    isComplete = false;
     var arrLength = (wordsToGuess.length) - 1;
     var randomNum = Math.floor(Math.random() * arrLength);
     var newWord = wordsToGuess[randomNum];
@@ -19,6 +21,8 @@ function startGame() {
 }
 
 function inquirerInput(obj) {
+    console.log("You have " + numGuesses + " guesses remaining.");
+
     inquirer
         .prompt([{
             type: "input",
@@ -27,17 +31,27 @@ function inquirerInput(obj) {
         },
         ])
         .then(function (response) {
-            obj.checkAllLetters(response.letterInput);
+            var input = response.letterInput;
+            obj.checkAllLetters(input);
             obj.returnString();
             checkComplete(obj);
-            numGuesses--;
+            checkInWord(obj, input);
 
             if (isComplete) {
                 console.log("Congratulations! You guessed the language!");
                 newGame();
             }
             else if (numGuesses > 0) {
-                inquirerInput(obj);
+                if (inWord) {
+                    console.log("You guessed correctly!");
+                    inquirerInput(obj);
+                    inWord = false;
+                }
+                else {
+                    console.log("Incorrect guess...");
+                    numGuesses--;
+                    inquirerInput(obj);
+                }
             }
             else {
                 console.log("Sorry, you lost...")
@@ -73,11 +87,20 @@ function checkComplete(obj) {
     var letterObjArray = obj.letters;
     for (i = 0; i < letterObjArray.length; i++) {
         if (!letterObjArray[i].guessed) {
-            return false;
+            return;
         }
     }
 
     isComplete = true;
+}
+
+function checkInWord(obj, ltr) {
+    var letterObjArray = obj.letters;
+    for (i = 0; i < letterObjArray.length; i++) {
+        if (letterObjArray[i].letter === ltr) {
+            inWord = true;
+        }
+    }
 }
 
 startGame();
