@@ -19,7 +19,7 @@ var Word = function(word){
            stringArray.push(this.letters[i].checkLetter());
         }   
 
-        return stringArray.join(" ");
+        console.log(stringArray.join(" "));
     }
 
     this.checkAllLetters = function(char) {
