@@ -14,7 +14,6 @@ var Letter = function(inputLetter) {
         if (char === this.letter) {
             this.guessed = true;
         }
-
     }
 }
 
