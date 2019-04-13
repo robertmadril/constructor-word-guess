@@ -21,7 +21,6 @@ function startGame() {
 }
 
 function inquirerInput(obj) {
-    console.log("You have " + numGuesses + " guesses remaining.");
 
     inquirer
         .prompt([{
@@ -49,6 +48,7 @@ function inquirerInput(obj) {
                 }
                 else {
                     console.log("Incorrect guess...");
+                    console.log("You have " + numGuesses + " guesses remaining.");
                     numGuesses--;
                     inquirerInput(obj);
                 }
