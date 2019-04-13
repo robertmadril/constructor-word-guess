@@ -1,9 +1,10 @@
-var Letter = function(letter) {
-    this.letter = letter;
+var Letter = function(inputLetter) {
+    this.letter = inputLetter.toLowerCase();
     this.guessed = false;
+
     this.checkLetter = function() {
         if (this.guessed) {
-            return this.letter;
+            return inputLetter;
         }
         else {
             return "__";
@@ -13,6 +14,7 @@ var Letter = function(letter) {
         if (char === this.letter) {
             this.guessed = true;
         }
+
     }
 }
 
