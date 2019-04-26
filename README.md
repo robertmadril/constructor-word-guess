@@ -5,7 +5,7 @@
 * First, clone the repo to your local drive using the terminal command below:
 
 ```
-git clone git@github.com:robertmadril/constructor-word-guess.git
+git clone https://github.com/robertmadril/constructor-word-guess.git
 ```
 
 * Next, input the following command into the folder's terminal:
